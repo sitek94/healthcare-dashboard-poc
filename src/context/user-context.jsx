@@ -18,7 +18,7 @@ function useUser() {
   }
 
   const extendedContext = {
-    user,
+    ...user,
     isDoctor() {
       return user.type === UserType.Doctor;
     },
