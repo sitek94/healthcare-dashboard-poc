@@ -23,6 +23,7 @@ button {
 
 a {
   color: white;
+  margin-right: 20px;
 }
 
 table {
@@ -41,4 +42,13 @@ th {
 
 tr:hover {
   background-color: #363a44;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin-bottom: 10px;
 }

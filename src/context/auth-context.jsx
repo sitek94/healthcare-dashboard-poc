@@ -1,24 +1,28 @@
 import * as React from "react";
-import { UserType } from "../consts";
-import { doctor, patient } from "../fake-data";
+import faker from "faker";
+import { useHistory } from "react-router";
 
 const AuthContext = React.createContext();
 
 function AuthProvider(props) {
   const [user, setUser] = React.useState(null);
+  const history = useHistory();
 
   const value = {
     user,
     login(type) {
-      const fakeData = type === UserType.Doctor ? doctor : patient;
-
       setUser({
         type,
-        ...fakeData,
+
+        // Generate some fake data
+        firstName: faker.name.firstName(),
+        ...faker.helpers.userCard(),
       });
+      history.push("/dashboard");
     },
     logout() {
       setUser(null);
+      history.push("/");
     },
   };
 

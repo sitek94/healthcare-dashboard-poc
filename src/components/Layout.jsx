@@ -12,3 +12,7 @@ export default function Layout({ children }) {
     </div>
   );
 }
+
+export function Main({ children }) {
+  return <div style={{ flex: 1, padding: 20 }}>{children}</div>;
+}

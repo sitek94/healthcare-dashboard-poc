@@ -22,8 +22,8 @@ function useUser() {
     isDoctor() {
       return user.type === UserType.Doctor;
     },
-    isPatient() {
-      return user.type === UserType.Patient;
+    isSingleUser() {
+      return user.type === UserType.SingleUser;
     },
   };
 

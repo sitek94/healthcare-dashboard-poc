@@ -1,51 +1,99 @@
-import { UserType } from "../consts";
-import { useAuth } from "../context/auth-context";
+import { Redirect, Route, Switch } from "react-router";
 import { useUser } from "../context/user-context";
-import DoctorDashboard from "./DoctorDashboard";
+import DoctorDashboard from "../features/doctor/Dashboard";
 import Footer from "./Footer";
-import Layout from "./Layout";
-import Navbar from "./Navbar";
-import PatientDashboard from "./PatientDashboard";
+import Layout, { Main } from "./Layout";
+import Navbar, { NavLink } from "./Navbar";
+import SingleUserDashboard from "../features/single-user/Dashboard";
+import MyAccount from "../features/shared/MyAccount";
+import DoctorSettings from "../features/doctor/Settings";
+import PatientDashboard from "../features/doctor/PatientDashboard";
+import Login from "../features/auth/Login";
+import DoctorReports from "../features/doctor/Reports";
+import SingleUserIntegrations from "../features/single-user/Integrations";
 
+/**
+ * User is either authenticated or not
+ */
 export default function App() {
   const user = useUser();
 
   return user ? <AuthenticatedApp /> : <UnAuthenticatedApp />;
 }
 
+/**
+ * Show Login screen when not authenticated
+ */
 function UnAuthenticatedApp() {
-  const { login } = useAuth();
-
   return (
-    <main style={{ textAlign: "center" }}>
-      <h1>Login</h1>
-
-      <section>
-        <button onClick={() => login(UserType.Doctor)}>Login as Doctor</button>
-        <button onClick={() => login(UserType.Patient)}>
-          Login as Patient
-        </button>
-      </section>
-    </main>
+    <Switch>
+      <Route exact path="/" component={Login} />
+      <Redirect to="/" />
+    </Switch>
   );
 }
 
+/**
+ * When authenticated start Doctor or SingleUser app
+ */
 function AuthenticatedApp() {
   const user = useUser();
 
-  let dashboard;
   if (user.isDoctor()) {
-    dashboard = <DoctorDashboard />;
+    return <DoctorApp />;
   }
 
-  if (user.isPatient()) {
-    dashboard = <PatientDashboard />;
+  if (user.isSingleUser()) {
+    return <SingleUserApp />;
   }
 
+  return null;
+}
+
+/**
+ * Single User specific app
+ */
+function SingleUserApp() {
   return (
     <Layout>
-      <Navbar />
-      <div style={{ flex: 1, padding: 20 }}>{dashboard}</div>
+      <Navbar>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/integrations">Integrations</NavLink>
+        <NavLink to="/my-account">My Account</NavLink>
+      </Navbar>
+      <Main>
+        <Switch>
+          <Route path="/dashboard" component={SingleUserDashboard} />
+          <Route path="/integrations" component={SingleUserIntegrations} />
+          <Route path="/my-account" component={MyAccount} />
+        </Switch>
+      </Main>
+      <Footer />
+    </Layout>
+  );
+}
+
+/**
+ * Doctor specific app
+ */
+function DoctorApp() {
+  return (
+    <Layout>
+      <Navbar>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/reports">Reports</NavLink>
+        <NavLink to="/my-account">My Account</NavLink>
+        <NavLink to="/settings">Settings</NavLink>
+      </Navbar>
+      <Main>
+        <Switch>
+          <Route exact path="/dashboard" component={DoctorDashboard} />
+          <Route path="/dashboard/:patientId" component={PatientDashboard} />
+          <Route path="/reports" component={DoctorReports} />
+          <Route path="/settings" component={DoctorSettings} />
+          <Route path="/my-account" component={MyAccount} />
+        </Switch>
+      </Main>
       <Footer />
     </Layout>
   );
