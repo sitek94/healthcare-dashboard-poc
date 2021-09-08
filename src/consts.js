@@ -1,4 +1,4 @@
 export const UserType = {
-  Doctor: "doctor",
-  SingleUser: "single-user",
+  Doctor: "Doctor",
+  SingleUser: "Single User"
 };
