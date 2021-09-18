@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const patient = faker.helpers.userCard();
 
 export default function PatientDashboard() {
-  const { patientId } = useParams();
+  const { patientId } = useParams<{ patientId: string }>();
 
   return (
     <div>

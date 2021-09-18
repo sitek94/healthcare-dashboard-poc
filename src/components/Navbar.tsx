@@ -1,7 +1,11 @@
-import { NavLink as RouterNavLink } from "react-router-dom";
+import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 
-export default function Navbar({ children }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function Navbar({ children }: Props) {
   const { user, logout } = useAuth();
 
   return (
@@ -11,16 +15,16 @@ export default function Navbar({ children }) {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "10px 20px",
-        borderBottom: "2px solid white"
+        borderBottom: "2px solid white",
       }}
     >
       <div>{children}</div>
 
-      <button onClick={logout}>Logout {user.type}</button>
+      <button onClick={logout}>Logout {user?.type}</button>
     </nav>
   );
 }
 
-export function NavLink(props) {
+export function NavLink(props: NavLinkProps) {
   return <RouterNavLink {...props} activeStyle={{ color: "cornflowerblue" }} />;
 }

@@ -1,5 +1,6 @@
 import { Redirect, Route, Switch } from "react-router";
-import { useUser } from "../context/user-context";
+
+import { UserProvider, useUser } from "../context/user-context";
 import DoctorDashboard from "../features/doctor/Dashboard";
 import Footer from "./Footer";
 import Layout, { Main } from "./Layout";
@@ -11,14 +12,21 @@ import PatientDashboard from "../features/doctor/PatientDashboard";
 import Login from "../features/auth/Login";
 import DoctorReports from "../features/doctor/Reports";
 import SingleUserIntegrations from "../features/single-user/Integrations";
+import { useAuth } from "context/auth-context";
 
 /**
  * User is either authenticated or not
  */
 export default function App() {
-  const user = useUser();
+  const { user } = useAuth();
 
-  return user ? <AuthenticatedApp /> : <UnAuthenticatedApp />;
+  return user ? (
+    <UserProvider user={user}>
+      <AuthenticatedApp />
+    </UserProvider>
+  ) : (
+    <UnAuthenticatedApp />
+  );
 }
 
 /**

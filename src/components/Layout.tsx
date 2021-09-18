@@ -1,4 +1,8 @@
-export default function Layout({ children }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: Props) {
   return (
     <div
       style={{
@@ -13,6 +17,6 @@ export default function Layout({ children }) {
   );
 }
 
-export function Main({ children }) {
+export function Main({ children }: Props) {
   return <div style={{ flex: 1, padding: 20 }}>{children}</div>;
 }
