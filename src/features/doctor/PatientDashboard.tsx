@@ -1,6 +1,6 @@
-import faker from "faker";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import faker from 'faker';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const patient = faker.helpers.userCard();
 
@@ -15,7 +15,7 @@ export default function PatientDashboard() {
 
       <h1>Patient: {patient.name}</h1>
 
-      <img src={faker.image.avatar()} alt={"user avatar"} />
+      <img src={faker.image.avatar()} alt={'user avatar'} />
       <p>{faker.lorem.paragraph(5)}</p>
       <p>{faker.lorem.paragraph(5)}</p>
     </div>

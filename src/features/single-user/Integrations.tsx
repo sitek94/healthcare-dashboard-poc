@@ -1,5 +1,5 @@
-import range from "lodash/range";
-import faker from "faker";
+import range from 'lodash/range';
+import faker from 'faker';
 
 export default function SingleUserIntegrations() {
   return (

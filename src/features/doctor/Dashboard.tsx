@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { useUser } from "../../context/user-context";
-import range from "lodash/range";
-import faker from "faker";
+import { Link } from 'react-router-dom';
+import { useUser } from '../../context/user-context';
+import range from 'lodash/range';
+import faker from 'faker';
 
 const patients = range(10).map(() => ({
   id: faker.datatype.uuid(),
@@ -18,16 +18,16 @@ export default function DoctorDashboard() {
       <h2>Patients list:</h2>
       <table>
         <thead>
-          <tr style={{ textAlign: "left" }}>
+          <tr style={{ textAlign: 'left' }}>
             <th>Full Name</th>
             <th>Phone</th>
           </tr>
         </thead>
         <tbody>
-          {patients.map((patient) => (
+          {patients.map(patient => (
             <tr key={patient.id}>
               <td>
-                <Link to={"/dashboard/" + patient.id}>{patient.name}</Link>
+                <Link to={'/dashboard/' + patient.id}>{patient.name}</Link>
               </td>
               <td>{patient.phone}</td>
             </tr>

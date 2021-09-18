@@ -1,6 +1,6 @@
 export enum UserType {
-  Doctor = "Doctor",
-  SingleUser = "Single User",
+  Doctor = 'Doctor',
+  SingleUser = 'Single User',
 }
 
 export interface User {

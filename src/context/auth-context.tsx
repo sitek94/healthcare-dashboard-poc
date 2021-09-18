@@ -1,10 +1,10 @@
-import * as React from "react";
-import faker from "faker";
-import { useHistory } from "react-router";
-import { User, UserType } from "types";
-import { sleep } from "utils/sleep";
+import * as React from 'react';
+import faker from 'faker';
+import { useHistory } from 'react-router';
+import { User, UserType } from 'types';
+import { sleep } from 'utils/sleep';
 
-const authTokenKey = "auth-token";
+const authTokenKey = 'auth-token';
 
 interface AuthContextValue {
   // User data coming from auth provider
@@ -16,7 +16,7 @@ interface AuthContextValue {
 }
 
 const AuthContext = React.createContext<AuthContextValue | undefined>(
-  undefined
+  undefined,
 );
 
 interface AuthProviderProps {
@@ -47,13 +47,13 @@ function AuthProvider({ children }: AuthProviderProps) {
     });
     localStorage.setItem(authTokenKey, faker.datatype.uuid());
     setIsLoading(false);
-    history.push("/dashboard");
+    history.push('/dashboard');
   }
 
   function logout() {
     setUser(null);
     localStorage.removeItem(authTokenKey);
-    history.push("/");
+    history.push('/');
   }
 
   const value: AuthContextValue = {

@@ -1,7 +1,7 @@
-import * as React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import * as React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { AuthProvider } from "./auth-context";
+import { AuthProvider } from './auth-context';
 
 interface Props {
   children: React.ReactNode;

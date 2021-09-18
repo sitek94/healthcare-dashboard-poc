@@ -1,5 +1,5 @@
-import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
-import { useAuth } from "../context/auth-context";
+import { NavLink as RouterNavLink, NavLinkProps } from 'react-router-dom';
+import { useAuth } from '../context/auth-context';
 
 interface Props {
   children: React.ReactNode;
@@ -11,11 +11,11 @@ export default function Navbar({ children }: Props) {
   return (
     <nav
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        borderBottom: "2px solid white",
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '10px 20px',
+        borderBottom: '2px solid white',
       }}
     >
       <div>{children}</div>
@@ -26,5 +26,5 @@ export default function Navbar({ children }: Props) {
 }
 
 export function NavLink(props: NavLinkProps) {
-  return <RouterNavLink {...props} activeStyle={{ color: "cornflowerblue" }} />;
+  return <RouterNavLink {...props} activeStyle={{ color: 'cornflowerblue' }} />;
 }

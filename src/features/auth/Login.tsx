@@ -1,11 +1,11 @@
-import { UserType } from "types";
-import { useAuth } from "../../context/auth-context";
+import { UserType } from 'types';
+import { useAuth } from '../../context/auth-context';
 
 export default function Login() {
   const { login, isLoading } = useAuth();
 
   return (
-    <main style={{ textAlign: "center" }}>
+    <main style={{ textAlign: 'center' }}>
       <h1>Login</h1>
 
       <section>

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { User, UserType } from "types";
+import * as React from 'react';
+import { User, UserType } from 'types';
 
 // Context model
 
@@ -8,7 +8,7 @@ interface UserContextValue {
 }
 
 const UserContext = React.createContext<UserContextValue | undefined>(
-  undefined
+  undefined,
 );
 
 interface UserProviderProps {
@@ -35,7 +35,7 @@ function useUser() {
 
   const { user } = context;
 
-  const extendedContext = {
+  return {
     ...user,
     isDoctor() {
       return user.type === UserType.Doctor;
@@ -44,8 +44,6 @@ function useUser() {
       return user.type === UserType.SingleUser;
     },
   };
-
-  return extendedContext;
 }
 
 export { UserProvider, useUser };

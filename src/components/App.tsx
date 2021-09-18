@@ -1,20 +1,20 @@
-import { Redirect, Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from 'react-router';
 
-import { useAuth } from "context/auth-context";
-import { UserProvider, useUser } from "context/user-context";
+import { useAuth } from 'context/auth-context';
+import { UserProvider, useUser } from 'context/user-context';
 
-import Layout, { Main } from "components/Layout";
-import Footer from "components/Footer";
-import Navbar, { NavLink } from "components/Navbar";
+import Layout, { Main } from 'components/Layout';
+import Footer from 'components/Footer';
+import Navbar, { NavLink } from 'components/Navbar';
 
-import Login from "features/auth/Login";
-import MyAccount from "features/shared/MyAccount";
-import SingleUserDashboard from "features/single-user/Dashboard";
-import SingleUserIntegrations from "features/single-user/Integrations";
-import DoctorDashboard from "features/doctor/Dashboard";
-import DoctorReports from "features/doctor/Reports";
-import DoctorSettings from "features/doctor/Settings";
-import PatientDashboard from "features/doctor/PatientDashboard";
+import Login from 'features/auth/Login';
+import MyAccount from 'features/shared/MyAccount';
+import SingleUserDashboard from 'features/single-user/Dashboard';
+import SingleUserIntegrations from 'features/single-user/Integrations';
+import DoctorDashboard from 'features/doctor/Dashboard';
+import DoctorReports from 'features/doctor/Reports';
+import DoctorSettings from 'features/doctor/Settings';
+import PatientDashboard from 'features/doctor/PatientDashboard';
 
 /**
  * User is either authenticated or not
