@@ -2,6 +2,7 @@
   "name": "healthcare-dashboard-poc",
   "author": "Maciek Sitkowski <msitkowski94@gmail.com>",
   "homepage": "https://sitek94.github.io/healthcare-dashboard-poc/",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
