@@ -7,7 +7,7 @@ import { sleep } from "utils/sleep";
 const authTokenKey = "auth-token";
 
 interface AuthContextValue {
-  // User data from
+  // User data coming from auth provider
   user: User | null;
 
   login: (type: UserType) => void;
@@ -32,7 +32,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     setIsLoading(true);
 
     // Simulate loading
-    sleep(2000);
+    await sleep(2000);
 
     setUser({
       type,
