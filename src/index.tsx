@@ -1,13 +1,14 @@
-import "./index.css";
+import '@primer/css/index.scss';
+import '@primer/css/forms/index.scss';
 
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 
-import App from "./components/App";
-import AppProviders from "./context";
+import App from 'app/App';
+import AppProviders from 'app/AppProviders';
 
 ReactDOM.render(
   <AppProviders>
     <App />
   </AppProviders>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );

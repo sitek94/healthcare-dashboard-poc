@@ -16,7 +16,8 @@
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "types": ["node", "react", "styled-components", "jest"]
   },
   "include": ["src"]
 }

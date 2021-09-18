@@ -11,12 +11,17 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
+    "@primer/components": "^29.0.0",
+    "@primer/css": "^17.11.0",
+    "@primer/octicons-react": "^15.1.0",
     "faker": "^5.5.3",
     "lodash": "^4.17.21",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@types/faker": "^5.5.8",

@@ -24,7 +24,7 @@ function UserProvider({ user, children }: UserProviderProps) {
   );
 }
 
-// Helper hoook
+// Helper hook
 
 function useUser() {
   const context = React.useContext(UserContext);

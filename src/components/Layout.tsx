@@ -1,19 +1,20 @@
+import { Box } from '@primer/components';
+
 interface Props {
   children: React.ReactNode;
 }
 
 export default function Layout({ children }: Props) {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
+    <Box
+      color="text.white"
+      bg="bg.primary"
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
     >
       {children}
-    </div>
+    </Box>
   );
 }
 
