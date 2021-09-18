@@ -1,7 +1,6 @@
 {
   "name": "healthcare-dashboard-poc",
-  "version": "0.1.0",
-  "private": true,
+  "author": "Maciek Sitkowski <msitkowski94@gmail.com>",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
