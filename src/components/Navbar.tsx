@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function Navbar({ children }: Props) {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
 
   return (
     <nav
@@ -20,7 +20,7 @@ export default function Navbar({ children }: Props) {
     >
       <div>{children}</div>
 
-      <button onClick={logout}>Logout {user?.type}</button>
+      <button onClick={logout}>Logout</button>
     </nav>
   );
 }

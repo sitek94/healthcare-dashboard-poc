@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useUser } from '../../context/user-context';
+// import { useUser } from '../../context/user-context';
 import range from 'lodash/range';
 import faker from 'faker';
 
@@ -9,11 +9,11 @@ const patients = range(10).map(() => ({
 }));
 
 export default function DoctorDashboard() {
-  const user = useUser();
+  // const user = useUser();
 
   return (
     <div>
-      <h1>Overview of {user.address.city} practice</h1>
+      <h1>Overview of {faker.address.cityName()} practice</h1>
 
       <h2>Patients list:</h2>
       <table>

@@ -1,18 +1,20 @@
 import * as React from 'react';
 import faker from 'faker';
 import { useHistory } from 'react-router';
-import { User, UserType } from 'types';
+
+import { User, UserRole } from 'types';
 import { sleep } from 'utils/sleep';
 
-const authTokenKey = 'auth-token';
-
 interface AuthContextValue {
-  // User data coming from auth provider
+  // User data coming from auth provider - some basic info, like userId,
+  // name, etc.
   user: User | null;
-
-  login: (type: UserType) => void;
-  logout: () => void;
   isLoading: boolean;
+  error: Error | null;
+
+  login: (name: string, type: UserRole) => Promise<void>;
+  logout: () => void;
+  clearError: () => void;
 }
 
 const AuthContext = React.createContext<AuthContextValue | undefined>(
@@ -27,40 +29,46 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   const [user, setUser] = React.useState<User | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
-
-  async function login(type: UserType) {
-    setIsLoading(true);
-
-    // Simulate loading
-    await sleep(2000);
-
-    setUser({
-      type,
-
-      // Generate some fake data
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      address: {
-        street: faker.address.streetName(),
-        city: faker.address.cityName(),
-      },
-    });
-    localStorage.setItem(authTokenKey, faker.datatype.uuid());
-    setIsLoading(false);
-    history.push('/dashboard');
-  }
-
-  function logout() {
-    setUser(null);
-    localStorage.removeItem(authTokenKey);
-    history.push('/');
-  }
+  const [error, setError] = React.useState<Error | null>(null);
 
   const value: AuthContextValue = {
+    // State
     user,
-    login,
-    logout,
     isLoading,
+    error,
+
+    // Actions
+    async login(name, role) {
+      setIsLoading(true);
+
+      // Simulate loading
+      await sleep(2000);
+
+      // Simple validation
+      if (!name) {
+        setError(new Error(`Name is required!`));
+        setIsLoading(false);
+        return;
+      }
+
+      setUser({
+        role,
+
+        // Generate some fake data
+        id: faker.datatype.uuid(),
+        firstName: name,
+        lastName: faker.name.lastName(),
+      });
+      setIsLoading(false);
+      history.push('/dashboard');
+    },
+    logout() {
+      setUser(null);
+      history.push('/');
+    },
+    clearError() {
+      setError(null);
+    },
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

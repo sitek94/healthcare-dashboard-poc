@@ -1,14 +1,11 @@
-export enum UserType {
+export enum UserRole {
   Doctor = 'Doctor',
   SingleUser = 'Single User',
 }
 
 export interface User {
-  type: UserType;
+  role: UserRole;
+  id: string;
   firstName: string;
   lastName: string;
-  address: {
-    street: string;
-    city: string;
-  };
 }

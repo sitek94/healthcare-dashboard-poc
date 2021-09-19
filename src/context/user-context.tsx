@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { User, UserType } from 'types';
+import { User, UserRole } from 'types';
 
 // Context model
 
@@ -38,10 +38,10 @@ function useUser() {
   return {
     ...user,
     isDoctor() {
-      return user.type === UserType.Doctor;
+      return user.role === UserRole.Doctor;
     },
     isSingleUser() {
-      return user.type === UserType.SingleUser;
+      return user.role === UserRole.SingleUser;
     },
   };
 }
