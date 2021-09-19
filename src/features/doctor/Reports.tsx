@@ -9,7 +9,7 @@ const patients = range(10).map(() => ({
 
 export default function DoctorReports() {
   return (
-    <div>
+    <div className="markdown-body">
       <h1>Reports</h1>
 
       <h2>Patients reports:</h2>

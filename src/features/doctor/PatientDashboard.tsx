@@ -8,12 +8,11 @@ export default function PatientDashboard() {
   const { patientId } = useParams<{ patientId: string }>();
 
   return (
-    <div>
+    <div className="markdown-body">
       <Link to="/dashboard">&larr; Back to Dashboard</Link>
 
-      <h5>Patient ID: {patientId}</h5>
-
       <h1>Patient: {patient.name}</h1>
+      <p>Patient ID: {patientId}</p>
 
       <img src={faker.image.avatar()} alt={'user avatar'} />
       <p>{faker.lorem.paragraph(5)}</p>
