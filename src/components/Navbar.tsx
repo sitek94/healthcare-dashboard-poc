@@ -1,5 +1,8 @@
+import * as React from 'react';
 import { NavLink as RouterNavLink, NavLinkProps } from 'react-router-dom';
+
 import { useAuth } from '../context/auth-context';
+import { Button, UnderlineNav } from '@primer/components';
 
 interface Props {
   children: React.ReactNode;
@@ -9,22 +12,30 @@ export default function Navbar({ children }: Props) {
   const { logout } = useAuth();
 
   return (
-    <nav
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '10px 20px',
-        borderBottom: '2px solid white',
-      }}
+    <UnderlineNav
+      sx={{ px: 4 }}
+      aria-label="Main navigation"
+      actions={<Button onClick={logout}>Logout</Button>}
     >
-      <div>{children}</div>
-
-      <button onClick={logout}>Logout</button>
-    </nav>
+      {children}
+    </UnderlineNav>
   );
 }
 
-export function NavLink(props: NavLinkProps) {
-  return <RouterNavLink {...props} activeStyle={{ color: 'cornflowerblue' }} />;
+export function NavLink({ to, children }: NavLinkProps) {
+  return (
+    <UnderlineNav.Link
+      as={RouterNavLink}
+      to={to}
+      sx={{
+        width: 110,
+        // Remove weird, flashing border on hover/focus
+        '&:focus, &:hover': {
+          outline: 'none',
+        },
+      }}
+    >
+      {children}
+    </UnderlineNav.Link>
+  );
 }

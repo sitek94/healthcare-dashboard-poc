@@ -76,6 +76,7 @@ function SingleUserApp() {
           <Route path="/dashboard" component={SingleUserDashboard} />
           <Route path="/integrations" component={SingleUserIntegrations} />
           <Route path="/my-account" component={MyAccount} />
+          <Redirect to="/dashboard" />
         </Switch>
       </Main>
       <Footer />
@@ -102,6 +103,7 @@ function DoctorApp() {
           <Route path="/reports" component={DoctorReports} />
           <Route path="/settings" component={DoctorSettings} />
           <Route path="/my-account" component={MyAccount} />
+          <Redirect to="/dashboard" />
         </Switch>
       </Main>
       <Footer />

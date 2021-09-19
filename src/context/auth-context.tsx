@@ -31,6 +31,13 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Error | null>(null);
 
+  React.useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
+
   const value: AuthContextValue = {
     // State
     user,
@@ -50,20 +57,24 @@ function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(false);
         return;
       }
-
-      setUser({
+      const fakeUser: User = {
         role,
 
         // Generate some fake data
         id: faker.datatype.uuid(),
         firstName: name,
         lastName: faker.name.lastName(),
-      });
+      };
+      setUser(fakeUser);
       setIsLoading(false);
+
+      // Poor man's persistence
+      localStorage.setItem('user', JSON.stringify(fakeUser));
       history.push('/dashboard');
     },
     logout() {
       setUser(null);
+      localStorage.removeItem('user');
       history.push('/');
     },
     clearError() {
