@@ -1,39 +1,45 @@
-import { Link } from 'react-router-dom';
-// import { useUser } from '../../context/user-context';
-import range from 'lodash/range';
 import faker from 'faker';
+import { Link as RouterLink } from 'react-router-dom';
 
-const patients = range(10).map(() => ({
-  id: faker.datatype.uuid(),
-  ...faker.helpers.userCard(),
-}));
+import { createPatients } from 'utils/fake-data';
+import Table from 'components/Table';
+import { Truncate } from '@primer/components';
 
 export default function DoctorDashboard() {
-  // const user = useUser();
-
   return (
-    <div>
-      <h1>Overview of {faker.address.cityName()} practice</h1>
+    <div className="markdown-body">
+      <h1>Overview of {faker.address.cityName()} Practice</h1>
 
       <h2>Patients list:</h2>
-      <table>
-        <thead>
-          <tr style={{ textAlign: 'left' }}>
-            <th>Full Name</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patients.map(patient => (
-            <tr key={patient.id}>
+      <Table
+        columns={['name', 'age', 'email', 'phone', 'tags']}
+        rows={createPatients(10)}
+        renderCell={(column, patient) => {
+          const cell = patient[column];
+
+          // Name - link
+          if (column === 'name') {
+            return (
               <td>
-                <Link to={'/dashboard/' + patient.id}>{patient.name}</Link>
+                <RouterLink to={'/dashboard/' + patient.id}>{cell}</RouterLink>
               </td>
-              <td>{patient.phone}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            );
+          }
+
+          // Tags
+          if (Array.isArray(cell)) {
+            const text = cell.map(t => t.text).join(', ');
+            return (
+              <td>
+                <Truncate title={text}>{text}</Truncate>
+              </td>
+            );
+          }
+
+          // Default
+          return <td>{cell}</td>;
+        }}
+      />
     </div>
   );
 }

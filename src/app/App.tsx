@@ -103,7 +103,7 @@ function DoctorApp() {
           <Route path="/reports" component={DoctorReports} />
           <Route path="/settings" component={DoctorSettings} />
           <Route path="/my-account" component={MyAccount} />
-          <Redirect to="/dashboard" />
+          {/*<Redirect to="/dashboard" />*/}
         </Switch>
       </Main>
       <Footer />
